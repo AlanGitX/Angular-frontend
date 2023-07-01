@@ -1,0 +1,78 @@
+<div>
+  <h2>Product Listing</h2>
+
+  <div>
+    <h2>Add Product</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div>
+        <label for="categoryName">Category Name:</label>
+        <input type="text" id="categoryName" [(ngModel)]="categoryName" name="categoryName" required>
+      </div>
+      <div>
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" [(ngModel)]="productName" name="productName" required>
+      </div>
+      <div>
+        <label for="productQuantity">Product Quantity:</label>
+        <input type="number" id="productQuantity" [(ngModel)]="productQuantity" name="productQuantity" required>
+      </div>
+      <div>
+        <label for="productPrice">Product Price:</label>
+        <input type="number" id="productPrice" [(ngModel)]="productPrice" name="productPrice" required>
+      </div>
+      <button type="submit">Add Product</button>
+    </form>
+  </div>
+  
+
+
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Product Name</th>
+        <th>Product Quantity</th>
+        <th>Product Price</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productList">
+        <td>{{ product.category_name }}</td>
+        <td>{{ product.product_name }}</td>
+        <td>{{ product.product_quantity }}</td>
+        <td>{{ product.product_price }}</td>
+        <td>
+          <button (click)="editProduct(product)">Edit</button>
+          <button (click)="deleteProduct(product)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div *ngIf="isEditMode">
+  <div>
+    <label>Category Name:</label>
+    <input [(ngModel)]="category_name"/>
+  </div>
+  <div>
+    <label>Product Name:</label>
+    <input [(ngModel)]="product_name" />
+  </div>
+  <div>
+    <label>Product Quantity:</label>
+    <input [(ngModel)]="product_quantity" />
+  </div>
+  <div>
+    <label>Product Price:</label>
+    <input [(ngModel)]="product_price" />
+  </div>
+  <div>
+    <button (click)="saveChanges()">Save</button>
+    <button (click)="cancelEditMode()">Cancel</button>
+  </div>
+</div>
